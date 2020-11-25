@@ -192,21 +192,16 @@ const nameInputValidator = () => {
 
 /* EMAIL Validator */
 const emailInputValidator = () => {
+    const emailRegex = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;
     const emailValue = emailInput.value;
     emailAlert.innerHTML = "";
 
-    // Variable to store the .indexOf of the `@` in the email value
-    var emailAtIndex = emailValue.indexOf('@');
-    // 4. Create a variable to store the .lastIndexOf of the `.` in the email value
-    const emailDotIndex = emailValue.lastIndexOf('.');
-
-    // If the `@` index is greater than one AND the `.` last index is greater than the `@` index + 1, 
-    // Set the email's border to white and return true
-    // Else, set the email's border to red and return false
-    if (emailAtIndex > 1 && emailDotIndex > emailAtIndex++) {
+    if (emailRegex.test(emailValue) == true) {
+        //   Email Valid Alert
         emailAlert.style.display = "block";
         emailAlert.innerHTML = "Valid";
         emailAlert.style.color = "green";
+        console.log('true fucker')
         return true;
     }
     else {
@@ -214,6 +209,7 @@ const emailInputValidator = () => {
         emailAlert.style.display = "block";
         emailAlert.innerHTML = "Please enter a valid email adress";
         emailAlert.style.color = "red";
+        console.log('false fucker')
         return false;
     }
 }
@@ -256,7 +252,7 @@ const paymentSelectorValidator = () => {
 // CREDIT CARD NUMBER Validator-Credit Card field should only accept a number between 13 and 16 digits.
 const creditCardNumberInputValidator = () => {
     const creditCardNumberInputValue = creditCardNumberInput.value;
-    const creditcardNumberRegEx = /^[0-9]{13,16}$/
+    const creditcardNumberRegEx = /^[0-9]{13,16}$/;
     const creditcardNumberMultipleCharactersRegex = /^\d+$/;
     creditCardNumberAlert.innerHTML = "";
 
